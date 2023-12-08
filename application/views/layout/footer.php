@@ -248,6 +248,10 @@
   <!--This page plugins -->
   <script src="<?= base_url() ?>assets/extra-libs/DataTables/datatables.min.js"></script>
   <script src="<?= base_url() ?>assets/dist/js/pages/datatable/datatable-basic.init.js"></script>
+  <!--This page JavaScript -->
+  <script src="<?= base_url() ?>assets/extra-libs/jquery.repeater/dff.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
   <script>
   	$(document).ready(function() {

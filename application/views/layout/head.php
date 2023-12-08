@@ -15,8 +15,9 @@
 	<!-- Custom CSS -->
 	<link href="<?= base_url() ?>assets/dist/css/style.min.css" rel="stylesheet">
 
-	<script src="<?= base_url() ?>assets/libs/jquery/dist/jquery.min.js"></script>
 	
+	<script src="<?= base_url() ?>assets/libs/jquery/dist/jquery.min.js"></script>
+
 </head>
 
 <body>
