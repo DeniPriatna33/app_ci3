@@ -229,6 +229,7 @@
   <div class="chat-windows"></div>
 
 
+  
   <!-- Bootstrap tether Core JavaScript -->
   <script src="<?= base_url() ?>assets/libs/popper.js/dist/umd/popper.min.js"></script>
   <script src="<?= base_url() ?>assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -251,6 +252,8 @@
   <!--This page JavaScript -->
   <script src="<?= base_url() ?>assets/extra-libs/jquery.repeater/dff.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Select2 -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
   <script>
@@ -258,6 +261,7 @@
   		$('#datatable').DataTable();
   	});
   	$(document).ready(function() {
+		$('.select2').select2();
 
   		$('.custom-file-input').on('change', function() {
   			let fileName = $(this).val().split('\\').pop();

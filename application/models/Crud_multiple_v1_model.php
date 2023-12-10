@@ -45,9 +45,21 @@ class Crud_multiple_v1_model extends CI_Model
 		$this->db->update($this->table, $data);
 	}
 
+	public function update_record_all($id, $data,$id_n)
+	{
+		$this->db->where_in('id', $id);
+		$this->db->update_batch($this->table, $data,$id_n);
+	}
+
 	public function delete_record($id)
 	{
 		$this->db->where('id', $id);
+		$this->db->delete($this->table);
+	}
+
+	public function delete_record_all($id)
+	{
+		$this->db->where_in('id', $id);
 		$this->db->delete($this->table);
 	}
 }

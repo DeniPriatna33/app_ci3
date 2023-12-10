@@ -14,9 +14,11 @@
 	<link href="<?= base_url() ?>assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
 	<!-- Custom CSS -->
 	<link href="<?= base_url() ?>assets/dist/css/style.min.css" rel="stylesheet">
+	<!-- Select2 -->
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-	
 	<script src="<?= base_url() ?>assets/libs/jquery/dist/jquery.min.js"></script>
+
 
 </head>
 

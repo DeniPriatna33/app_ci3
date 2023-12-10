@@ -7,6 +7,9 @@
 	<div class="col-12">
 		<div class="card">
 			<div class="card-body">
+				<h4 class="card-title"><?= $sub_judul1 ?>&nbsp;<?= $sub_judul ?>
+					<a href="<?= base_url('crud/crud_multiple_v1') ?>" class="btn btn-primary btn-sm float-right"><i class="fa fa-arrow-left"></i></a>
+				</h4>
 				<form method="POST" action="<?= base_url('crud/crud_multiple_v1/create') ?>" enctype="multipart/form-data">
 					<div class="row_n">
 						<div class="col-sm-3">
@@ -30,7 +33,7 @@
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="jurusan">Jurusan</label>
-								<select class="form-control" id="jurusan" name="jurusan[]">
+								<select class="form-control select2" id="jurusan" name="jurusan[]">
 									<option value="Teknik Informatika">Teknik Informatika</option>
 									<option value="Teknik Industri">Teknik Industri</option>
 									<option value="Teknik Pangan">Teknik Pangan</option>

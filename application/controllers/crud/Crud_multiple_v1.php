@@ -26,18 +26,6 @@ class Crud_multiple_v1 extends CI_Controller {
 		$this->load->view('layout/wrapper', $data);
 	}
 
-	public function add()
-	{
-		# Data Array
-		$data = [
-			'sub_judul' => 'Crud Multiple V1',
-			'sub_judul1' => 'Tambah',
-			'user' => $this->user,
-			'isi' =>	'crud_multiple_v1/add',
-		];
-		$this->load->view('layout/wrapper', $data);
-	}
-
 	public function get_records()
 	{
 		
@@ -49,13 +37,13 @@ class Crud_multiple_v1 extends CI_Controller {
 		$total_records = $this->side->get_total_records();
 
 		$records = $this->side->get_records($limit, $start, $order, $dir);
-
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($records as $record) {
 			$no++;
 			$data[] = array(
 				// $record->id,
+				"<td><input type='checkbox' class='check-item' name='id[]' onclick='click_check()' value='".$record->id."'></td>",
 				$no,
 				$record->nama,
 				$record->nik,
@@ -77,15 +65,27 @@ class Crud_multiple_v1 extends CI_Controller {
 		echo json_encode($response);
 	}
 
+	public function add()
+	{
+		# Data Array
+		$data = [
+			'sub_judul' => 'Crud Multiple V1',
+			'sub_judul1' => 'Tambah',
+			'user' => $this->user,
+			'isi' =>	'crud_multiple_v1/add',
+		];
+		$this->load->view('layout/wrapper', $data);
+	}
+
+
 	public function create()
 	{
-		
-
-		$nama = $this->input->post('nama'); // Ambil data nis dan masukkan ke variabel nis
+		$nama = $this->input->post('nama'); // Ambil data nama  dan masukkan ke variabel nama 
 		$nik = $this->input->post('nik'); 
 		$email = $this->input->post('email');
 		$jurusan = $this->input->post('jurusan');
 
+		# Save Multiple V1
 		$arrayku = [];
 		foreach ($nama as $row=>$data) {
 			$arraytmp = array(
@@ -97,11 +97,30 @@ class Crud_multiple_v1 extends CI_Controller {
 			array_push($arrayku, (object)$arraytmp);
 		}
 
-		
 		$this->side->create_record($arrayku);
 		# Kasih Alert / info
 		$this->session->set_flashdata('message', 'Ditambah!');
 		redirect('crud/crud_multiple_v1');
+	}
+
+	public function edit()
+	{
+		$id = $this->input->get('id');
+		$where =  "WHERE id IN (" . str_replace('"', "'", trim(json_encode(explode(",", $id)), '[]')) . ")";
+		$query = $this->db->query("SELECT * FROM tbl_mahasiswa $where")->result();
+		
+		$jurusan = ['Teknik Informatika', 'Teknik Mesin', 'Teknik Planologi', 'Teknik Pangan', 'Teknik Lingkungan'];
+
+		# Data Array
+		$data = [
+			'sub_judul' => 'Crud Multiple V1',
+			'sub_judul1' => 'Edit',
+			'user' => $this->user,
+			'query'	=> $query,
+			'jurusan'	=> $jurusan,
+			'isi' =>	'crud_multiple_v1/edit',
+		];
+		$this->load->view('layout/wrapper', $data);
 	}
 
 	public function ajax_edit($id)
@@ -122,6 +141,42 @@ class Crud_multiple_v1 extends CI_Controller {
 
 		$this->side->update_record($id, $data);
 		echo json_encode(array('status' => true, 'message' => 'Record updated successfully'));
+	}
+
+	public function update_all()
+	{
+		$id = $this->input->post('id');
+		$nama = $this->input->post('nama'); // Ambil data nama  dan masukkan ke variabel nama 
+		$nik = $this->input->post('nik'); 
+		$email = $this->input->post('email');
+		$jurusan = $this->input->post('jurusan');
+
+		# Save Multiple V1
+		$arrayku = [];
+		foreach ($nama as $row=>$data) {
+			$arraytmp = array(
+				"id"   			=> $id[$row],
+				"nama"   		=> $nama[$row],
+				"nik"    		=> $nik[$row],
+				"email"         => $email[$row],
+				"jurusan"       => $jurusan[$row],
+			);
+			array_push($arrayku, (object)$arraytmp);
+		}
+
+		echo '<pre>'; print_r($arrayku);die;
+		
+		$this->side->update_record_all($id, $arrayku,'id');
+		# Kasih Alert / info
+		$this->session->set_flashdata('message', 'Diupdate!!');
+		redirect('crud/crud_multiple_v1');
+	}
+
+
+	function delete_all() {
+		$id = $this->input->post('id');
+		$this->side->delete_record_all($id);
+		echo json_encode(array('status' => true, 'message' => 'Record deleted all successfully'));
 	}
 
 	public function delete()
