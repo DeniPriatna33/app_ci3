@@ -11,7 +11,7 @@
 						</button>
 					</div>
 				<?php } ?>
-				
+
 				<h4 class="card-title"><?= $sub_judul1 ?>&nbsp;<?= $sub_judul ?>
 					<a href="<?= base_url('crud/crud_multiple_v1/add') ?>" class="btn btn-primary btn-sm float-right mb-3 fa fa-plus-square"> Tambah Data</a>
 					<button type="button" onclick="delete_all()" class="btn btn-danger btn-sm float-right mb-3 fa fa-trash-alt mr-1"> Delete All</button>
@@ -125,34 +125,46 @@
 			]
 		});
 
-		$("#check-all").click(function(){ // Ketika user men-cek checkbox all
+		$("#check-all").click(function() { // Ketika user men-cek checkbox all
 			if ($(this).is(":checked")) {
 				$(".check-item").prop("checked", true); // ceklis semua checkbox siswa dengan class "check-item"
-			}else{
+			} else {
 				$(".check-item").prop("checked", false); // un-ceklis semua checkbox siswa dengan class "check-item"
 			}
 		});
 
 	});
 
-	function click_check(){
-		// Count cheked tidak 10 check-all false bila 10 check-all true (Limit 10 Serveside)
-		if ($(".check-item:checkbox:checked").length != 10) {
-			$("#check-all").prop("checked", false);
-		}else{
-			$("#check-all").prop("checked", true);
+	function click_check() {
+		/*#Start Versi 1 Count cheked tidak 10 check-all false bila 10 check-all true (Limit 10 Serveside)
+			if ($(".check-item:checkbox:checked").length != 10) {
+				$("#check-all").prop("checked", false);
+			}else{
+				$("#check-all").prop("checked", true);
+			}
+			
+		#END*/
+
+		// Versi 2
+		var nodes = dataTable.cells().nodes();
+		var checked_pilih = $(nodes).find(".check-item:checkbox:checked").length;
+		var checked_all = $(nodes).find(".check-item:checkbox").length;
+		if (checked_pilih == checked_all) {
+			$("#check-all").prop('checked', true);
+		} else {
+			$("#check-all").prop('checked', false);
 		}
 	}
 
-	function edit_all(){
+	function edit_all() {
 		if ($(".check-item").prop("checked") == true) {
-			var id = $("input[name='id[]']:checked").map(function(){
+			var id = $("input[name='id[]']:checked").map(function() {
 				return $(this).val();
 			}).get();
 
-			
-			window.location.href = "<?= base_url('crud/crud_multiple_v1/edit?id=') ?>"+id;
-		}else{
+
+			window.location.href = "<?= base_url('crud/crud_multiple_v1/edit?id=') ?>" + id;
+		} else {
 			Swal.fire({
 				title: "Edit All !",
 				text: "Data belum dipilih!",
@@ -189,7 +201,7 @@
 	function save() {
 		var url;
 		url = "<?= base_url('crud/Crud_multiple_v1/update') ?>";
-		
+
 		// Ajax adding data to database
 		$.ajax({
 			url: url,
@@ -207,10 +219,10 @@
 		});
 	}
 
-	function delete_all(){
+	function delete_all() {
 		if ($(".check-item").prop("checked") == true) {
 			// Buat Dapeting data yang di pilih di checkbox (id) 
-			var id = $("input[name='id[]']:checked").map(function(){
+			var id = $("input[name='id[]']:checked").map(function() {
 				return $(this).val();
 			}).get();
 
@@ -246,14 +258,14 @@
 					});
 				}
 			});
-		}else{
+		} else {
 			Swal.fire({
 				title: "Deleted All !",
 				text: "Data belum dipilih!",
 				icon: "warning"
 			});
 		}
-		
+
 	}
 
 	function delete_data(id) {

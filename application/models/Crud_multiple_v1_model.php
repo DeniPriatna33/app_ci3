@@ -16,11 +16,13 @@ class Crud_multiple_v1_model extends CI_Model
 		return $this->db->count_all($this->table);
 	}
 
-	public function get_records($limit, $start, $order, $dir)
+	public function get_records($limit, $start, $order=null, $dir=null)
 	{
 		$this->db->select('*');
 		$this->db->from($this->table);
-		$this->db->order_by($order, $dir);
+		if ($order && $dir) {
+			$this->db->order_by($order, $dir);
+		}
 		$this->db->order_by('id', 'DESC');
 		$this->db->limit($limit, $start);
 		return $this->db->get()->result();

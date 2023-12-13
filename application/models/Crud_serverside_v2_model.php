@@ -15,11 +15,17 @@ class Crud_serverside_v2_model extends CI_Model {
 		return $this->db->count_all('tbl_mahasiswa');
 	}
 
-	public function get_records($limit, $start, $order, $dir)
+	public function get_records($limit, $start, $order, $dir,$q=null)
 	{
 		$this->db->select('*');
 		$this->db->from('tbl_mahasiswa');
 		$this->db->order_by($order, $dir);
+		$this->ob->group_start();
+			$this->ob->like("UPPER(nama)", $q);
+			$this->ob->or_like("UPPER(nik)", $q);
+			$this->ob->or_like("UPPER(email)", $q);
+			$this->ob->or_like("UPPER(jurusan)", $q);
+		$this->ob->group_end();
 		$this->db->limit($limit, $start);
 		return $this->db->get()->result();
 	}

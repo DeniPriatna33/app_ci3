@@ -6,20 +6,22 @@ function education_fields() {
     var divtest = document.createElement("div");
     divtest.setAttribute("class", "form-group removeclass" + room);
     var rdiv = 'removeclass' + room;
-	divtest.innerHTML = '<div class="row_n ">'+
+	divtest.innerHTML = '<div class="row_n deni">'+
 					'<div class="col-sm-3">'+
 					'	<div class="form-group">'+
-					'		<input type="text" class="form-control" id="nama" name="nama[]" placeholder="Nama">'+
+					'		<input type="text" class="form-control" id="nama_'+room+'" name="nama[]" placeholder="Nama">'+
+					'		<input type="hidden" class="form-control" id="id_'+room+'" name="id[]" value="">'+
+					'		<input type="hidden" class="form-control" id="id_'+room+'" name="type[]" value="tambah">'+
 					'	</div>'+
 					'</div>'+
 					'<div class="col-sm-2">'+
 					'	<div class="form-group">'+
-					'		<input type="text" class="form-control" id="nik" name="nik[]" placeholder="Nik">'+
+					'		<input type="text" class="form-control" id="nik_'+room+'" name="nik[]" placeholder="Nik">'+
 					'	</div>'+
 					'</div>'+
 					'<div class="col-sm-2">'+
 					'	<div class="form-group">'+
-					'		<input type="text" class="form-control" id="email" name="email[]" placeholder="Email">'+
+					'		<input type="text" class="form-control" id="email_'+room+'" name="email[]" placeholder="Email">'+
 					'	</div>'+
 					'</div>'+
 					'<div class="col-sm-3">'+
@@ -35,7 +37,7 @@ function education_fields() {
 					'	</div>'+
 					'</div>'+
 					'<div class="col-sm-2">'+
-					'	<div class="form-group">'+
+					'	<div class="form-group ">'+
 					'		<button class="btn btn-danger" type="button" onclick="remove_education_fields(' + room + ');"><i class="fa fa-minus"></i></button>'+
 					'	</div>'+
 					'</div>'+

@@ -2,6 +2,10 @@
 	.row_n {
 		display: flex;
 	}
+
+	.row_p {
+		display: flex;
+	}
 </style>
 <div class="row">
 	<div class="col-12">
@@ -12,30 +16,31 @@
 				</h4>
 				<form action="<?= base_url('crud/Crud_multiple_v1/update_all') ?>" method="POST" enctype="multipart/form-data">
 					<?php foreach ($query as $key => $value) { ?>
-						<div class="row_n">
+						<div class="row_p deni">
 							<div class="col-sm-3">
 								<div class="form-group">
 									<label for="">Nama</label>
-									<input type="text" class="form-control" id="nama" name="nama[]" placeholder="Nama" value="<?= $value->nama ?>">
-									<input type="hidden" class="form-control" id="id" name="id[]" placeholder="id" value="<?= $value->id ?>">
+									<input type="text" class="form-control" id="nama_<?= $key ?>" name="nama[]" placeholder="Nama" value="<?= $value->nama ?>">
+									<input type="hidden" class="form-control" id="id_<?= $key ?>" name="id[]" placeholder="id" value="<?= $value->id ?>">
+									<input type="hidden" class="form-control" id="type_<?= $key ?>" name="type[]" placeholder="type" value="edit">
 								</div>
 							</div>
-							<div class="col-sm-3">
+							<div class="col-sm-2">
 								<div class="form-group">
 									<label for="">Nik</label>
-									<input type="text" class="form-control" id="nik" name="nik[]" placeholder="Nik" value="<?= $value->nik ?>">
+									<input type="text" class="form-control" id="nik_<?= $key ?>" name="nik[]" placeholder="Nik" value="<?= $value->nik ?>">
 								</div>
 							</div>
-							<div class="col-sm-3">
-								<div class="form-group">
+							<div class="col-sm-2">
+								<div class="form-group ">
 									<label for="">Email</label>
-									<input type="text" class="form-control" id="email" name="email[]" placeholder="Email" value="<?= $value->email ?>">
+									<input type="text" class="form-control" id="email_<?= $key ?>" name="email[]" placeholder="Email" value="<?= $value->email ?>">
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="form-group">
 									<label for="jurusan">Jurusan</label>
-									<select class="form-control" id="jurusan" name="jurusan[]">
+									<select class="form-control select2" id="jurusan_<?= $key ?>" name="jurusan[]">
 										<?php foreach ($jurusan as $dt) : ?>
 											<?php if ($dt == $value->jurusan) : ?>
 												<option value="<?= $dt; ?>" selected><?= $dt; ?></option>
@@ -46,14 +51,14 @@
 									</select>
 								</div>
 							</div>
-							
-							<!-- <div class="col-sm-2">
+
+							<div class="col-sm-2">
 								<div class="form-group">
 									<button onclick="education_fields();" class="btn rounded-pill px-4 btn-light-success text-success font-weight-medium waves-effect waves-light mt-4" style="padding-top: 10px;" type="button">
 										<i class="fa fa-plus-circle"></i>
 									</button>
 								</div>
-							</div> -->
+							</div>
 						</div>
 					<?php } ?>
 					<div id="education_fields" class="m-t-20"></div>

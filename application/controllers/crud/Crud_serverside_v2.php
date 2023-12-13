@@ -39,14 +39,15 @@ class Crud_serverside_v2 extends CI_Controller {
 			// Add more columns as needed
 		];
 
-		$limit = $this->input->post('length');
-		$start = $this->input->post('start');
-		$order = $columns[$this->input->post('order')[0]['column']];
-		$dir = $this->input->post('order')[0]['dir'];
+		$limit 	= $this->input->post('length');
+		$start 	= $this->input->post('start');
+		$order 	= $columns[$this->input->post('order')[0]['column']];
+		$dir 	= $this->input->post('order')[0]['dir'];
+		$q      = $this->input->post('search')['value'];
 
 		$total_records = $this->side->get_total_records();
 
-		$records = $this->side->get_records($limit, $start, $order, $dir);
+		$records = $this->side->get_records($limit, $start, $order, $dir,$q);
 
 		$data = array();
 		$no = $_POST['start'];

@@ -17,7 +17,8 @@
 	<!-- Select2 -->
 	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-	<script src="<?= base_url() ?>assets/libs/jquery/dist/jquery.min.js"></script>
+	<!-- <script src="<?= base_url() ?>assets/libs/jquery/dist/jquery.min.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
 
 </head>

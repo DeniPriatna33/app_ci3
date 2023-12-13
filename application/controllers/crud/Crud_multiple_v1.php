@@ -31,8 +31,8 @@ class Crud_multiple_v1 extends CI_Controller {
 		
 		$limit = $this->input->post('length');
 		$start = $this->input->post('start');
-		$order = $this->input->post('order')[0]['column'];
-		$dir = $this->input->post('order')[0]['dir'];
+		$order = isset($this->input->post('order')[0]['column'])? $this->input->post('order')[0]['column']:'';
+		$dir = isset($this->input->post('order')[0]['dir'])? $this->input->post('order')[0]['dir']:'';
 
 		$total_records = $this->side->get_total_records();
 
@@ -150,23 +150,38 @@ class Crud_multiple_v1 extends CI_Controller {
 		$nik = $this->input->post('nik'); 
 		$email = $this->input->post('email');
 		$jurusan = $this->input->post('jurusan');
+		$type = $this->input->post('type');
 
-		# Save Multiple V1
-		$arrayku = [];
-		foreach ($nama as $row=>$data) {
-			$arraytmp = array(
-				"id"   			=> $id[$row],
-				"nama"   		=> $nama[$row],
-				"nik"    		=> $nik[$row],
-				"email"         => $email[$row],
-				"jurusan"       => $jurusan[$row],
-			);
-			array_push($arrayku, (object)$arraytmp);
+		$arrayku1 = [];
+		$arrayku2 = [];
+		foreach ($nama as $row => $data) {
+			if ($type[$row]=='edit') {
+				$arraytmp = array(
+					"id"   			=> $id[$row],
+					"nama"   		=> $nama[$row],
+					"nik"    		=> $nik[$row],
+					"email"         => $email[$row],
+					"jurusan"       => $jurusan[$row],
+				);
+				array_push($arrayku2, (object)$arraytmp);
+			}else{
+				$arraytmp = array(
+					"nama"   		=> $nama[$row],
+					"nik"    		=> $nik[$row],
+					"email"         => $email[$row],
+					"jurusan"       => $jurusan[$row],
+				);
+				array_push($arrayku1, (object)$arraytmp);
+			}
 		}
+		$this->side->create_record($arrayku1);
+		$this->side->update_record_all($id, $arrayku2, 'id');
 
-		echo '<pre>'; print_r($arrayku);die;
 		
-		$this->side->update_record_all($id, $arrayku,'id');
+	
+		
+		
+		
 		# Kasih Alert / info
 		$this->session->set_flashdata('message', 'Diupdate!!');
 		redirect('crud/crud_multiple_v1');
