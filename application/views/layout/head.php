@@ -16,7 +16,7 @@
 	<link href="<?= base_url() ?>assets/dist/css/style.min.css" rel="stylesheet">
 	<!-- Select2 -->
 	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
+	<link rel="stylesheet" href="https://unpkg.com/bootstrap4-fullscreen-modal@4.5.0/dist/bootstrap4-modal-fullscreen.css">
 	<!-- <script src="<?= base_url() ?>assets/libs/jquery/dist/jquery.min.js"></script> -->
 	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 

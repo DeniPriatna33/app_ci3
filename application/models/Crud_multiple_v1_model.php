@@ -11,19 +11,31 @@ class Crud_multiple_v1_model extends CI_Model
 		parent::__construct();
 	}
 
-	public function get_total_records()
+	public function get_total_records($q=null)
 	{
-		return $this->db->count_all($this->table);
+		// return $this->db->count_all('tbl_mahasiswa');
+		$this->db->select('*');
+		$this->db->from('tbl_mahasiswa');
+		$this->db->group_start();
+			$this->db->like("UPPER(nama)", $q);
+			$this->db->or_like("UPPER(nik)", $q);
+			$this->db->or_like("UPPER(email)", $q);
+			$this->db->or_like("UPPER(jurusan)", $q);
+		$this->db->group_end();
+		return $this->db->count_all_results();
 	}
 
-	public function get_records($limit, $start, $order=null, $dir=null)
+	public function get_records($limit, $start, $order, $dir,$q=null)
 	{
 		$this->db->select('*');
-		$this->db->from($this->table);
-		if ($order && $dir) {
-			$this->db->order_by($order, $dir);
-		}
-		$this->db->order_by('id', 'DESC');
+		$this->db->from('tbl_mahasiswa');
+		$this->db->order_by($order, $dir);
+		$this->db->group_start();
+			$this->db->like("UPPER(nama)", $q);
+			$this->db->or_like("UPPER(nik)", $q);
+			$this->db->or_like("UPPER(email)", $q);
+			$this->db->or_like("UPPER(jurusan)", $q);
+		$this->db->group_end();
 		$this->db->limit($limit, $start);
 		return $this->db->get()->result();
 	}

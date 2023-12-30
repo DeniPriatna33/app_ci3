@@ -36,7 +36,6 @@ class Crud_serverside_v2 extends CI_Controller {
 			3 => 'email',
 			4 => 'jurusan',
 			5 => '',
-			// Add more columns as needed
 		];
 
 		$limit 	= $this->input->post('length');
@@ -45,7 +44,7 @@ class Crud_serverside_v2 extends CI_Controller {
 		$dir 	= $this->input->post('order')[0]['dir'];
 		$q      = $this->input->post('search')['value'];
 
-		$total_records = $this->side->get_total_records();
+		$total_records = $this->side->get_total_records($q);
 
 		$records = $this->side->get_records($limit, $start, $order, $dir,$q);
 
