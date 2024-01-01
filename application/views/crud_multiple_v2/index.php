@@ -193,7 +193,9 @@
 
 	function edit_all() {
 		save_method = 'edit';
-		if ($(".check-item").prop("checked") == true) {
+		var nodes = dataTable.cells().nodes();
+		var checked_pilih = $(nodes).find(".check-item:checkbox:checked").length;
+		if (checked_pilih) {
 			data = $(".check-item:checked").map(function() {
 				return {
 					id: $(this).attr("data-id"),
@@ -287,7 +289,9 @@
 
 	
 	function delete_all() {
-		if ($(".check-item").prop("checked") == true) {
+		var nodes = dataTable.cells().nodes();
+		var checked_pilih = $(nodes).find(".check-item:checkbox:checked").length;
+		if (checked_pilih) {
 			// Buat Dapeting data yang di pilih di checkbox (id) 
 			var id = $("input[name='id[]']:checked").map(function() {
 				return $(this).val();
