@@ -143,7 +143,7 @@
  						<li class="sidebar-item">
  							<?php
 								$menuId = $mn['id'];
-								$querySubmenu = "SELECT * FROM tbl_login_sub_menu JOIN tbl_login_menu ON tbl_login_sub_menu.menu_id = tbl_login_menu.id WHERE tbl_login_sub_menu.menu_id = '$menuId' AND tbl_login_sub_menu.is_active = 1 ORDER BY urutan ASC";
+								$querySubmenu = "SELECT * FROM tbl_login_sub_menu JOIN tbl_login_menu ON tbl_login_sub_menu.menu_id = tbl_login_menu.id WHERE tbl_login_sub_menu.menu_id = '$menuId' AND tbl_login_sub_menu.is_active = 1 ORDER BY title,urutan ASC";
 								$sub_menu = $this->db->query($querySubmenu)->result_array();
 								?>
  							<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
