@@ -77,5 +77,19 @@
 </div>
 
 <script>
-	
+	$(document).ready(function(){
+		$('#dataTable_2').DataTable({
+			"processing": true,
+			"serverSide": true,
+			"order"		: [],
+			"ajax"		: {
+				"url"	: "<?= base_url("crud/Crud_serverside_v3/get_data") ?>",
+				"type"	: "POST"
+			},
+			"columnDefs": [{
+				"target": [-1],
+				"orderable":false
+			}]
+		});
+	});
 </script>
