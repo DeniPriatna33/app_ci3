@@ -49,6 +49,29 @@ class Crud_serverside_v3_model extends CI_Model {
 		return $this->db->count_all_results();
 	}
 
+	public function add_data($data) {
+		$this->db->insert($this->table, $data);
+		return $this->db->affected_rows();
+	}
+
+	public function get_data_by_id($id) {
+		$this->db->from($this->table);
+		$this->db->where('id', $id);
+		$query = $this->db->get();
+		return $query->row();
+	}
+
+	public function update_data($id, $data) {
+		$this->db->where('id', $id);
+		$this->db->update($this->table, $data);
+		return $this->db->affected_rows();
+	}
+
+	public function delete_data($id) {
+		$this->db->where('id', $id);
+		$this->db->delete($this->table);
+		return $this->db->affected_rows();
+	}
 
 
 	

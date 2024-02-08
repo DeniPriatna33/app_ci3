@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : (local)
+ Source Server         : MYSQL
  Source Server Type    : MySQL
- Source Server Version : 100424
+ Source Server Version : 100421 (10.4.21-MariaDB)
  Source Host           : localhost:3306
  Source Schema         : db_login_ci
 
  Target Server Type    : MySQL
- Target Server Version : 100424
+ Target Server Version : 100421 (10.4.21-MariaDB)
  File Encoding         : 65001
 
- Date: 01/12/2023 15:17:09
+ Date: 08/02/2024 22:38:57
 */
 
 SET NAMES utf8mb4;
@@ -109,7 +109,7 @@ CREATE TABLE `tbl_login_sub_menu`  (
   `is_active` int NULL DEFAULT NULL,
   `urutan` int NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_login_sub_menu
@@ -128,6 +128,8 @@ INSERT INTO `tbl_login_sub_menu` VALUES (12, 4, 'Crud Ajax v2', 'crud/crud_ajax_
 INSERT INTO `tbl_login_sub_menu` VALUES (16, 4, 'Crud Serverside V2', 'crud/crud_serverside_v2', 'mdi mdi-adjust', 1, 11);
 INSERT INTO `tbl_login_sub_menu` VALUES (17, 4, 'Crud V2', 'crud/crud_v2', 'mdi mdi-adjust', 1, 2);
 INSERT INTO `tbl_login_sub_menu` VALUES (21, 4, 'Crud Multiple V1', 'crud/crud_multiple_v1', 'mdi mdi-adjust', 1, 12);
+INSERT INTO `tbl_login_sub_menu` VALUES (22, 4, 'Crud Multiple V2', 'crud/crud_multiple_v2', 'mdi mdi-adjust', 1, 13);
+INSERT INTO `tbl_login_sub_menu` VALUES (23, 4, 'Crud Serverside V3', 'crud/crud_serverside_v3', 'mdi mdi-adjust', 1, 12);
 
 -- ----------------------------
 -- Table structure for tbl_login_token
@@ -158,7 +160,7 @@ CREATE TABLE `tbl_mahasiswa`  (
   `email` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `jurusan` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1017 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1076 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_mahasiswa
@@ -1138,8 +1140,31 @@ INSERT INTO `tbl_mahasiswa` VALUES (1007, 'Dani', '111', 'Dani@gmail.com', 'Tekn
 INSERT INTO `tbl_mahasiswa` VALUES (1008, 'Adam', '777', 'adam@gmail.com', 'Teknik Informatika');
 INSERT INTO `tbl_mahasiswa` VALUES (1009, 'Wudi', '999', 'wudi@gmail.com', 'Teknik Mesin');
 INSERT INTO `tbl_mahasiswa` VALUES (1010, 'Xiau', '888', 'xiau@gmai.com', 'Teknik Planologi');
-INSERT INTO `tbl_mahasiswa` VALUES (1014, 'Xiau', '666', 'xiau@gmai.com', 'Teknik Planologi');
-INSERT INTO `tbl_mahasiswa` VALUES (1015, 'Xiau', '333', 'xiau@gmai.com', 'Teknik Planologi');
-INSERT INTO `tbl_mahasiswa` VALUES (1016, 'Consequatur quae provident ipsum voluptate ducimus enim.', 'Blanditiis doloremque reiciendis ipsa excepturi.', 'your.email+fakedata25410@gmail.com', 'Teknik Lingkungan');
+INSERT INTO `tbl_mahasiswa` VALUES (1014, 'Xiau-Y', '666', 'xiau@gmai.com', 'Teknik Planologi');
+INSERT INTO `tbl_mahasiswa` VALUES (1015, 'A2', '333', 'xiau@gmai.com', 'Teknik Planologi');
+INSERT INTO `tbl_mahasiswa` VALUES (1053, 'A1 - QQ', '666', 'xiau@gmai.com', 'Teknik Planologi');
+
+-- ----------------------------
+-- Table structure for upload_files
+-- ----------------------------
+DROP TABLE IF EXISTS `upload_files`;
+CREATE TABLE `upload_files`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `base_url` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `file_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `module_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `relation_field` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `relation_value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `created_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `updated_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp(6) NULL DEFAULT NULL,
+  `keterangan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of upload_files
+-- ----------------------------
 
 SET FOREIGN_KEY_CHECKS = 1;

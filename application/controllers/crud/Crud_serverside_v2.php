@@ -98,10 +98,10 @@ class Crud_serverside_v2 extends CI_Controller {
 	{
 		$id = $this->input->post('id');
 		$data = array(
-			'nama' => $this->input->post('nama'),
-			'nik' => $this->input->post('nik'),
-			'email' => $this->input->post('email'),
-			'jurusan' => $this->input->post('jurusan'),
+			'nama' => $this->input->post('nama',true),
+			'nik' => $this->input->post('nik',true),
+			'email' => $this->input->post('email',true),
+			'jurusan' => $this->input->post('jurusan',true),
 		);
 
 		$this->side->update_record($id, $data);
